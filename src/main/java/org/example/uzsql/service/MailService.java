@@ -70,9 +70,12 @@ public class MailService {
                 </html>
                 """.formatted(dbName, username, password);
 
-
-        MailtrapMail mail = MailtrapMail.builder().from(new Address(fromEmail, fromName)).to(List.of(new Address(recipientEmail))).subject("UzSQL • Yangi MySQL bazangiz yaratildi").html(html).build();
-
+        MailtrapMail mail = MailtrapMail.builder()
+                .from(new Address(fromEmail, fromName))
+                .to(List.of(new Address(recipientEmail)))
+                .subject("UzSQL • Yangi MySQL bazangiz yaratildi")
+                .html(html)
+                .build();
         try {
             var response = client.send(mail);
             System.out.println("Mailtrap javobi: " + response);
@@ -80,6 +83,5 @@ public class MailService {
             System.out.println("Email yuborishda xatolik: " + e.getMessage());
         }
     }
-
 
 }

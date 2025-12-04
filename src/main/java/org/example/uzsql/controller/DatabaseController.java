@@ -1,8 +1,10 @@
 package org.example.uzsql.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.example.uzsql.dto.ApiResponse;
-import org.example.uzsql.dto.CreateDbRequest;
+import org.example.uzsql.dto.APIResponse;
+
+import org.example.uzsql.dto.CreateRequest;
 import org.example.uzsql.service.DatabaseService;
 import org.example.uzsql.service.RecaptchaService;
 import org.springframework.http.ResponseEntity;
@@ -17,27 +19,29 @@ public class DatabaseController {
     private final DatabaseService service;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody CreateDbRequest req ,  @RequestParam("g-recaptcha-response") String recaptchaToken) {
+    public ResponseEntity<?> create(
+            @RequestBody CreateRequest req,
+            HttpServletRequest servletRequest
+    ) {
         try {
-
-            boolean captchaVerified = recaptchaService.verify(recaptchaToken);
-
+            String recaptchaToken = req.getRecaptchaToken();
+            String userIp = servletRequest.getRemoteAddr();
+            boolean captchaVerified = recaptchaService.verify(recaptchaToken, userIp);
             if (!captchaVerified) {
-               return ResponseEntity.badRequest().body(
-                       new ApiResponse("error", "Recaptcha tasdiqlanmadi. Iltimos, qayta urinib ko'ring.")
-               );
+                return ResponseEntity.badRequest().body(
+                        new APIResponse("error", "Recaptcha tasdiqlanmadi. Qayta urinib ko'ring.")
+                );
             }
-
             String response = service.createDb(req);
-            return ResponseEntity.ok().body(
-                    new ApiResponse("success", "Sizning emailgizni MySQL baza ma'lumotlari yuborildi: " + response)
+            return ResponseEntity.ok(
+                    new APIResponse("success", "MySQL baza yaratildi va " + response + " emailga yuborildi!")
             );
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(
-                    new ApiResponse("error", e.getMessage())
-
+                    new APIResponse("error", e.getMessage())
             );
-
         }
     }
+
+
 }

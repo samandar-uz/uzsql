@@ -2,17 +2,23 @@
 <html lang="uz">
 
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>UzSQL</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap"
-          rel="stylesheet"/>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet" />
     <link
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-            rel="stylesheet"/>
+            rel="stylesheet" />
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+    <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script>
@@ -44,38 +50,41 @@
                     },
                     borderRadius: {
                         DEFAULT: "0.5rem",
-                        lg: '0.75rem',
-                        xl: '1rem',
-                        '2xl': '1.5rem',
+                        lg: "0.75rem",
+                        xl: "1rem",
+                        "2xl": "1.5rem",
                     },
                 },
             },
         };
-
     </script>
+
     <style>
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 1,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
+            font-variation-settings:
+                    "FILL" 1,
+                    "wght" 400,
+                    "GRAD" 0,
+                    "opsz" 24;
         }
 
         .hero-bg {
             background-color: #0f172a;
-            background-image: radial-gradient(at 27% 37%, hsla(243, 80%, 35%, 0.25) 0px, transparent 50%),
-            radial-gradient(at 97% 21%, hsla(243, 70%, 45%, 0.25) 0px, transparent 50%),
-            radial-gradient(at 52% 99%, hsla(220, 80%, 40%, 0.2) 0px, transparent 50%),
-            radial-gradient(at 10% 29%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%),
-            radial-gradient(at 97% 96%, hsla(243, 70%, 45%, 0.2) 0px, transparent 50%),
-            radial-gradient(at 33% 50%, hsla(220, 80%, 40%, 0.25) 0px, transparent 50%),
-            radial-gradient(at 79% 53%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%);
+            background-image:
+                    radial-gradient(at 27% 37%, hsla(243, 80%, 35%, 0.25) 0px, transparent 50%),
+                    radial-gradient(at 97% 21%, hsla(243, 70%, 45%, 0.25) 0px, transparent 50%),
+                    radial-gradient(at 52% 99%, hsla(220, 80%, 40%, 0.2) 0px, transparent 50%),
+                    radial-gradient(at 10% 29%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%),
+                    radial-gradient(at 97% 96%, hsla(243, 70%, 45%, 0.2) 0px, transparent 50%),
+                    radial-gradient(at 33% 50%, hsla(220, 80%, 40%, 0.25) 0px, transparent 50%),
+                    radial-gradient(at 79% 53%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%);
         }
     </style>
 </head>
 
 <body class="font-sans bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
 <div class="container mx-auto px-4 sm:px-6 py-4">
+    <!-- HEADER -->
     <header class="flex justify-between items-center py-4">
         <div class="flex items-center gap-3">
             <svg fill="none" height="36" viewBox="0 0 36 36" width="36" xmlns="http://www.w3.org/2000/svg">
@@ -87,11 +96,11 @@
         </div>
         <nav class="hidden md:flex items-center gap-6">
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#">Afzalliklar</a>
+               href="#features">Afzalliklar</a>
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#">Foydalanish</a>
+               href="#create-form">Foydalanish</a>
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#">Narxlar</a>
+               href="#pricing">Narxlar</a>
         </nav>
         <div class="flex items-center gap-4">
             <a class="hidden sm:block bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors"
@@ -105,24 +114,29 @@
             </button>
         </div>
     </header>
+
+    <!-- MOBILE NAV -->
     <div class="hidden md:hidden" id="mobile-menu">
         <nav class="flex flex-col space-y-4 py-4">
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#">Afzalliklar</a>
+               href="#features">Afzalliklar</a>
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#">Foydalanish</a>
+               href="#create-form">Foydalanish</a>
             <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#">Narxlar</a>
+               href="#pricing">Narxlar</a>
             <a class="block sm:hidden bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors text-center mt-2"
                href="#create-form">
                 Boshlash
             </a>
         </nav>
     </div>
+
     <main>
+        <!-- HERO -->
         <section class="text-center py-16 sm:py-32 rounded-3xl mt-6 hero-bg px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white max-w-4xl mx-auto">Tezkor MySQL
-                Ma'lumotlar bazasi. Bir lahzada.</h1>
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white max-w-4xl mx-auto">
+                Tezkor MySQL Ma'lumotlar bazasi. Bir lahzada.
+            </h1>
 
             <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a class="w-full sm:w-auto inline-block bg-primary text-white font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-primary-dark transition-colors"
@@ -131,71 +145,70 @@
                 </a>
                 <a href="#"
                    class="w-full sm:w-auto inline-flex items-center justify-center gap-3
-          bg-slate-900/90 hover:bg-slate-900 text-white font-semibold
-          py-3 px-6 sm:px-8 rounded-xl text-base sm:text-lg
-          transition-all duration-200 shadow-md hover:shadow-lg">
+                      bg-slate-900/90 hover:bg-slate-900 text-white font-semibold
+                      py-3 px-6 sm:px-8 rounded-xl text-base sm:text-lg
+                      transition-all duration-200 shadow-md hover:shadow-lg">
                     <span class="material-symbols-outlined text-xl">launch</span>
-
                     <span>phpMyAdmin</span>
-
                 </a>
-
             </div>
         </section>
-        <section class="py-16 sm:py-24">
+
+        <!-- FEATURES -->
+        <section id="features" class="py-16 sm:py-24">
             <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">Nima uchun UzSQL ni
-                    tanlashingiz kerak?</h2>
-                <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">Bizning platformamiz
-                    dasturlash
-                    jarayonini soddalashtirish va loyihalaringizni tezlashtirish uchun mo'ljallangan.</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+                    Nima uchun UzSQL ni tanlashingiz kerak?
+                </h2>
+                <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">
+                    Bizning platformamiz dasturlash jarayonini soddalashtirish va loyihalaringizni tezlashtirish uchun mo'ljallangan.
+                </p>
             </div>
             <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div
                         class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
                     <div
                             class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                            <span
-                                    class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">bolt</span>
+                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">bolt</span>
                     </div>
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Tezkor O'rnatish</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">Bir necha daqiqada o'z ma'lumotlar bazangizni
-                        ishga tushiring.</p>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">
+                        Bir necha daqiqada o'z ma'lumotlar bazangizni ishga tushiring.
+                    </p>
                 </div>
                 <div
                         class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
                     <div
                             class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                            <span
-                                    class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">stars</span>
+                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">stars</span>
                     </div>
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Mutlaqo Bepul</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">Hech qanday yashirin to'lovlar va
-                        cheklovlarsiz
-                        foydalaning.</p>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">
+                        Hech qanday yashirin to'lovlar va cheklovlarsiz foydalaning.
+                    </p>
                 </div>
                 <div
                         class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
                     <div
                             class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                            <span
-                                    class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">security</span>
+                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">security</span>
                     </div>
                     <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Ishonchli Infratuzilma</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">Ma'lumotlaringiz xavfsizligi va barqaror
-                        ishlashi
-                        kafolatlanadi.</p>
+                    <p class="mt-2 text-slate-600 dark:text-slate-400">
+                        Ma'lumotlaringiz xavfsizligi va barqaror ishlashi kafolatlanadi.
+                    </p>
                 </div>
             </div>
         </section>
+
+        <!-- CREATE FORM -->
         <section id="create-form" class="py-16 sm:py-24">
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
                     Baza yaratish
                 </h2>
                 <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">
-                    Yangi MySQL bazasini yaratish uchun quyidagi ma'lumotlarni to'ldiring. Bir necha soniyada tayyor
-                    bo‘ladi.
+                    Yangi MySQL bazasini yaratish uchun quyidagi ma'lumotlarni to'ldiring. Bir necha soniyada tayyor bo‘ladi.
                 </p>
             </div>
 
@@ -203,11 +216,12 @@
                     class="mt-12 max-w-3xl mx-auto bg-card-light dark:bg-card-dark p-6 sm:p-10 rounded-2xl shadow-lg border border-slate-200/80 dark:border-slate-800">
 
                 <!-- Info badge -->
-                <div class="mb-6 flex items-start gap-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 px-4 py-3">
+                <div
+                        class="mb-6 flex items-start gap-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 px-4 py-3">
                     <span class="material-symbols-outlined text-primary text-xl mt-0.5">info</span>
                     <p class="text-sm text-slate-600 dark:text-slate-300 text-left">
-                        Baza nomi va foydalanuvchi nomi faqat <span
-                            class="font-semibold">lotin harflari, raqamlar</span> va
+                        Baza nomi va foydalanuvchi nomi faqat
+                        <span class="font-semibold">lotin harflari, raqamlar</span> va
                         <code class="px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-xs">_</code>
                         (underscore) dan iborat bo‘lishi mumkin.
                     </p>
@@ -220,10 +234,10 @@
                             Baza nomi
                         </label>
                         <div class="mt-1 relative">
-                    <span
-                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                        dns
-                    </span>
+                            <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                                dns
+                            </span>
                             <input
                                     id="db-name"
                                     name="db-name"
@@ -234,16 +248,16 @@
                                     pattern="^[A-Za-z0-9_]+$"
                                     autocomplete="off"
                                     class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                               focus:border-primary focus:ring-primary sm:text-sm
-                               bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                               pl-10"
+                                       focus:border-primary focus:ring-primary sm:text-sm
+                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
+                                       pl-10"
                                     placeholder="masalan, uzsql_project"
                                     aria-describedby="db-name-help db-name-error"
                             />
                         </div>
                         <p id="db-name-help" class="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                            3–32 ta belgi. Faqat harf, raqam va <code
-                                class="px-1 rounded bg-slate-200/70 dark:bg-slate-800 text-[10px]">_</code>.
+                            3–32 ta belgi. Faqat harf, raqam va
+                            <code class="px-1 rounded bg-slate-200/70 dark:bg-slate-800 text-[10px]">_</code>.
                         </p>
                         <p id="db-name-error" class="mt-1 text-xs text-red-500 hidden">
                             Baza nomi noto‘g‘ri kiritildi.
@@ -256,10 +270,10 @@
                             Foydalanuvchi nomi
                         </label>
                         <div class="mt-1 relative">
-                    <span
-                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                        person
-                    </span>
+                            <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                                person
+                            </span>
                             <input
                                     id="user-name"
                                     name="user-name"
@@ -270,9 +284,9 @@
                                     pattern="^[A-Za-z0-9_]+$"
                                     autocomplete="off"
                                     class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                               focus:border-primary focus:ring-primary sm:text-sm
-                               bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                               pl-10"
+                                       focus:border-primary focus:ring-primary sm:text-sm
+                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
+                                       pl-10"
                                     placeholder="masalan, uzsql_user"
                                     aria-describedby="user-name-help user-name-error"
                             />
@@ -291,10 +305,10 @@
                             Gmail
                         </label>
                         <div class="mt-1 relative">
-                    <span
-                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                        mail
-                    </span>
+                            <span
+                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                                mail
+                            </span>
                             <input
                                     id="email"
                                     name="email"
@@ -302,9 +316,9 @@
                                     required
                                     autocomplete="email"
                                     class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                               focus:border-primary focus:ring-primary sm:text-sm
-                               bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                               pl-10"
+                                       focus:border-primary focus:ring-primary sm:text-sm
+                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
+                                       pl-10"
                                     placeholder="example@gmail.com"
                                     aria-describedby="email-error"
                             />
@@ -317,6 +331,7 @@
                         </p>
                     </div>
 
+                    <!-- reCAPTCHA -->
                     <div class="g-recaptcha"
                          data-sitekey="6LfFqyAsAAAAALM2YJXRRWX48TG_KrSrHZI66E8x">
                     </div>
@@ -327,17 +342,15 @@
                                 type="submit"
                                 aria-label="Baza yaratish"
                                 class="inline-flex w-full sm:w-auto items-center justify-center gap-3
-                           bg-primary text-white font-semibold py-3 px-6 sm:px-8
-                           rounded-lg text-base sm:text-lg shadow
-                           hover:bg-primary/90 transition-all duration-200
-                           focus:outline-none focus:ring-4 focus:ring-primary/30
-                           disabled:opacity-60 disabled:cursor-not-allowed"
+                                   bg-primary text-white font-semibold py-3 px-6 sm:px-8
+                                   rounded-lg text-base sm:text-lg shadow
+                                   hover:bg-primary/90 transition-all duration-200
+                                   focus:outline-none focus:ring-4 focus:ring-primary/30
+                                   disabled:opacity-60 disabled:cursor-not-allowed"
                         >
                             <span class="material-symbols-outlined text-xl" id="submit-icon">add</span>
                             <span id="submit-text">Baza yaratish</span>
                         </button>
-
-
                     </div>
                 </form>
 
@@ -345,22 +358,19 @@
                 <div
                         id="success-alert"
                         class="hidden mt-6 rounded-xl border border-blue-600/40 bg-[#031838] text-blue-100 px-6 py-4 text-sm shadow-lg transition-all duration-300"
-                        role="alert"
-                >
-
+                        role="alert">
                 </div>
 
-
+                <!-- Error alert -->
                 <div
                         id="error-alert"
                         class="hidden mt-4 rounded-xl border border-red-600/40 bg-red-900 text-red-100 px-6 py-4 text-sm shadow-lg transition-all duration-300"
-                        role="alert"
-                >
-
+                        role="alert">
                 </div>
             </div>
         </section>
 
+        <!-- CONNECTION EXAMPLES -->
         <section class="py-16 sm:py-24">
             <div class="text-center max-w-3xl mx-auto">
                 <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
@@ -378,23 +388,28 @@
                     <div
                             class="border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between gap-4">
                         <div class="flex items-center gap-1 sm:gap-2 text-sm overflow-x-auto">
-                            <button class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold flex-shrink-0
-                               bg-primary-light text-primary-foreground dark:bg-primary-dark/80 dark:text-white
-                               shadow-sm" data-lang="python">
+                            <button
+                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold flex-shrink-0
+                                       bg-primary-light text-primary-foreground dark:bg-primary-dark/80 dark:text-white
+                                       shadow-sm"
+                                    data-lang="python">
                                 Python
                             </button>
-                            <button class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                               text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                            <button
+                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
+                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
                                     data-lang="php">
                                 PHP
                             </button>
-                            <button class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                               text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                            <button
+                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
+                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
                                     data-lang="java">
                                 Java
                             </button>
-                            <button class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                               text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                            <button
+                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
+                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
                                     data-lang="cli">
                                 CLI
                             </button>
@@ -406,16 +421,16 @@
                         </div>
                     </div>
 
-
+                    <!-- Code block -->
                     <div class="relative bg-[#1f2933] dark:bg-[#111827] p-4 sm:p-6">
-                        <button type="button" class="copy-btn absolute top-3 right-3 sm:top-4 sm:right-4
-                           inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5
-                           text-xs font-medium text-white bg-slate-700/80 hover:bg-slate-600
-                           dark:bg-slate-600/80 dark:hover:bg-slate-500 transition-colors">
+                        <button type="button"
+                                class="copy-btn absolute top-3 right-3 sm:top-4 sm:right-4
+                                       inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5
+                                       text-xs font-medium text-white bg-slate-700/80 hover:bg-slate-600
+                                       dark:bg-slate-600/80 dark:hover:bg-slate-500 transition-colors">
                             <span class="material-symbols-outlined text-sm">content_copy</span>
                             <span class="hidden sm:inline">Nusxalash</span>
                         </button>
-
 
                         <div class="mb-4 flex items-center justify-between text-[11px] sm:text-xs text-slate-400">
                             <div class="flex items-center gap-2">
@@ -423,10 +438,9 @@
                                 <span class="inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
                                 <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
                             </div>
-
                         </div>
 
-
+                        <!-- Python -->
                         <pre class="lang-code font-mono text-xs sm:text-sm text-slate-200 whitespace-pre overflow-x-auto"
                              data-lang="python"><code>
 import mysql.connector
@@ -435,7 +449,7 @@ import mysql.connector
 config = {
     "user": "foydalanuvchi_nomi",
     "password": "parolingiz",
-    "host": "uzsql.cloud",
+    "host": "45.92.173.158",
     "database": "baza_nomi",
     "raise_on_warnings": True
 }
@@ -506,8 +520,7 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
                     <p>
                         <span class="font-semibold text-slate-700 dark:text-slate-300">Izoh:</span>
                         Yuqoridagi
-                        <code
-                                class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">foydalanuvchi_nomi</code>,
+                        <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">foydalanuvchi_nomi</code>,
                         <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">parolingiz</code>
                         va
                         <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">baza_nomi</code>
@@ -520,99 +533,23 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
                     </p>
                 </div>
             </div>
-
-            <script>
-                (function () {
-                    const tabs = document.querySelectorAll(".lang-tab");
-                    const codeBlocks = document.querySelectorAll(".lang-code");
-                    const copyBtn = document.querySelector(".copy-btn");
-                    document.querySelector(
-                        '[class*="connection_example"]'
-                    ) || document.querySelector(".font-mono span");
-                    const fileNameMap = {
-                        python: "connection_example.py",
-                        php: "connection_example.php",
-                        java: "UzSqlConnection.java",
-                        cli: "mysql_cli.sh",
-                    };
-
-                    function setActiveLang(lang) {
-                        tabs.forEach((tab) => {
-                            if (tab.dataset.lang === lang) {
-                                tab.classList.add(
-                                    "bg-primary-light",
-                                    "text-primary-foreground",
-                                    "dark:bg-primary-dark/80",
-                                    "dark:text-white",
-                                    "shadow-sm",
-                                    "font-semibold"
-                                );
-                            } else {
-                                tab.classList.remove(
-                                    "bg-primary-light",
-                                    "text-primary-foreground",
-                                    "dark:bg-primary-dark/80",
-                                    "dark:text-white",
-                                    "shadow-sm",
-                                    "font-semibold"
-                                );
-                                tab.classList.add(
-                                    "text-slate-600",
-                                    "dark:text-slate-400"
-                                );
-                            }
-                        });
-
-                        codeBlocks.forEach((block) => {
-                            block.classList.toggle(
-                                "hidden",
-                                block.dataset.lang !== lang
-                            );
-                        });
-
-                        const header = document.querySelector(
-                            ".mb-4 span.font-mono:last-child"
-                        );
-                        if (header && fileNameMap[lang]) {
-                            header.textContent = fileNameMap[lang];
-                        }
-                    }
-
-                    tabs.forEach((tab) => {
-                        tab.addEventListener("click", () => {
-                            setActiveLang(tab.dataset.lang);
-                        });
-                    });
-
-                    if (copyBtn) {
-                        copyBtn.addEventListener("click", async () => {
-                            const active = document.querySelector(
-                                ".lang-code:not(.hidden) code"
-                            );
-                            if (!active) return;
-                            const text = active.innerText.replace(/\u00A0/g, " ");
-
-                            try {
-                                await navigator.clipboard.writeText(text.trim());
-                                const oldText = copyBtn.innerHTML;
-                                copyBtn.innerHTML =
-                                    '<span class="material-symbols-outlined text-sm">check</span><span class="hidden sm:inline">Nusxalandi</span>';
-                                setTimeout(() => {
-                                    copyBtn.innerHTML = oldText;
-                                }, 1500);
-                            } catch (e) {
-                                console.error(e);
-                            }
-                        });
-                    }
-
-                    setActiveLang("python");
-                })();
-            </script>
         </section>
 
-
+        <!-- SIMPLE PRICING PLACEHOLDER -->
+        <section id="pricing" class="py-12 sm:py-16">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                    Narxlar
+                </h2>
+                <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                    Hozircha UzSQL mutlaqo bepul test rejimida ishlamoqda. Kelajakda qo‘shimcha premium
+                    funksiyalar qo‘shilishi mumkin.
+                </p>
+            </div>
+        </section>
     </main>
+
+    <!-- FOOTER -->
     <footer class="border-t border-slate-200 dark:border-slate-800 mt-16 py-8">
         <div
                 class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-sm text-slate-500 dark:text-slate-400">
@@ -624,14 +561,13 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
         </div>
     </footer>
 </div>
+
+<!-- LANGUAGE TABS + COPY BUTTON SCRIPT -->
 <script>
     (function () {
         const tabs = document.querySelectorAll(".lang-tab");
         const codeBlocks = document.querySelectorAll(".lang-code");
         const copyBtn = document.querySelector(".copy-btn");
-        document.querySelector(
-            '[class*="connection_example"]'
-        ) || document.querySelector(".font-mono span");
 
         function setActiveLang(lang) {
             tabs.forEach((tab) => {
@@ -666,8 +602,6 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
                     block.dataset.lang !== lang
                 );
             });
-
-
         }
 
         tabs.forEach((tab) => {
@@ -678,19 +612,18 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
 
         if (copyBtn) {
             copyBtn.addEventListener("click", async () => {
-                const active = document.querySelector(
-                    ".lang-code:not(.hidden) code"
-                );
+                const active = document.querySelector(".lang-code:not(.hidden) code");
                 if (!active) return;
+
                 const text = active.innerText.replace(/\u00A0/g, " ");
 
                 try {
                     await navigator.clipboard.writeText(text.trim());
-                    const oldText = copyBtn.innerHTML;
+                    const oldHtml = copyBtn.innerHTML;
                     copyBtn.innerHTML =
                         '<span class="material-symbols-outlined text-sm">check</span><span class="hidden sm:inline">Nusxalandi</span>';
                     setTimeout(() => {
-                        copyBtn.innerHTML = oldText;
+                        copyBtn.innerHTML = oldHtml;
                     }, 1500);
                 } catch (e) {
                     console.error(e);
@@ -698,10 +631,12 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
             });
         }
 
-
+        // Default language
         setActiveLang("python");
     })();
 </script>
+
+<!-- FORM + RECAPTCHA + ALERT SCRIPT -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -716,19 +651,43 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
         const emailError = document.getElementById("email-error");
 
         const submitBtn = form.querySelector("button[type='submit']");
-        const submitBtnText = submitBtn.querySelector("span:last-child");
-        const submitBtnIcon = submitBtn.querySelector("span.material-symbols-outlined");
+        const submitBtnText = document.getElementById("submit-text");
+        const submitBtnIcon = document.getElementById("submit-icon");
 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        // FORM submit
+        function showSuccessAlert(html) {
+            const alert = document.getElementById("success-alert");
+            alert.innerHTML = html;
+            alert.classList.remove("hidden");
+            alert.classList.remove("opacity-0");
+
+            setTimeout(() => {
+                alert.classList.add("opacity-0");
+                setTimeout(() => alert.classList.add("hidden"), 300);
+            }, 4000);
+        }
+
+        function showErrorAlert(msg) {
+            const alert = document.getElementById("error-alert");
+            alert.textContent = msg;
+            alert.classList.remove("hidden");
+            alert.classList.remove("opacity-0");
+
+            setTimeout(() => {
+                alert.classList.add("opacity-0");
+                setTimeout(() => alert.classList.add("hidden"), 300);
+            }, 4000);
+        }
+
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
 
             let isValid = true;
 
+            // Validation
             if (dbNameInput.value.trim() === "") {
                 dbNameError.classList.remove("hidden");
                 isValid = false;
@@ -746,76 +705,63 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
 
             if (!isValid) return;
 
-            // LOADING BUTTON
+            // reCAPTCHA
+            const recaptchaToken = grecaptcha.getResponse();
+            if (!recaptchaToken) {
+                showErrorAlert("Recaptcha tasdiqlanmadi! Iltimos, qayta urinib ko‘ring.");
+                return;
+            }
+
+            // Loading state
             submitBtn.disabled = true;
-            submitBtn.classList.add("opacity-70", "cursor-not-allowed");
             submitBtnIcon.textContent = "hourglass_empty";
             submitBtnText.textContent = "Yaratilyapti...";
 
             const payload = {
                 dbName: dbNameInput.value.trim(),
-                username: userNameInput.value.trim(),
-                email: emailInput.value.trim()
+                dbUser: userNameInput.value.trim(),
+                email: emailInput.value.trim(),
+                recaptchaToken: recaptchaToken
             };
 
             try {
                 const response = await fetch("/create", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
 
                 const result = await response.json();
+                // Reset form
+                form.reset();
 
+                // Reset reCAPTCHA
+                grecaptcha.reset();
                 if (response.ok && result.status === "success") {
                     showSuccessAlert(result.data);
+
+
+
+                    // Hide validation errors
+                    dbNameError.classList.add("hidden");
+                    userNameError.classList.add("hidden");
+                    emailError.classList.add("hidden");
                 } else {
-                    showErrorAlert(result.data);
+                    showErrorAlert(result.data || "Noma'lum xatolik yuz berdi.");
                 }
 
             } catch (err) {
-                showErrorAlert(err);
+                console.error(err);
+                showErrorAlert("Server bilan bog‘lanishda xatolik!");
             }
 
-            // BUTTON RESET
+            // Reset button
             submitBtn.disabled = false;
-            submitBtn.classList.remove("opacity-70", "cursor-not-allowed");
             submitBtnIcon.textContent = "add";
-            submitBtnText.textContent = "Baza Yaratish";
+            submitBtnText.textContent = "Baza yaratish";
         });
-
-        // SUCCESS ALERT
-        function showSuccessAlert(html) {
-            const alert = document.getElementById("success-alert");
-            alert.innerHTML = html;
-            alert.classList.remove("hidden", "opacity-0");
-
-            setTimeout(() => {
-                alert.classList.add("opacity-0");
-                setTimeout(() => alert.classList.add("hidden"), 300);
-            }, 4000);
-        }
-
-        // ERROR ALERT
-        function showErrorAlert(msg) {
-            const alert = document.getElementById("error-alert");
-            alert.textContent = msg;
-            alert.classList.remove("hidden", "opacity-0");
-
-            setTimeout(() => {
-                alert.classList.add("opacity-0");
-                setTimeout(() => alert.classList.add("hidden"), 300);
-            }, 4000);
-        }
-
     });
 </script>
 
-
-<script>
-</script>
 </body>
-
 </html>
