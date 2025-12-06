@@ -79,6 +79,53 @@
                     radial-gradient(at 33% 50%, hsla(220, 80%, 40%, 0.25) 0px, transparent 50%),
                     radial-gradient(at 79% 53%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%);
         }
+
+        /* Enhanced Alerts */
+        .alert {
+            @apply p-4 rounded-lg mb-4 flex items-start transition-all duration-300 ease-in-out transform;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border: 1px solid transparent;
+        }
+
+        .alert-success {
+            @apply bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300;
+        }
+
+        .alert-error {
+            @apply bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-300;
+        }
+
+        .alert-close {
+            @apply ml-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center h-8 w-8 rounded-lg focus:ring-2 focus:ring-opacity-40 hover:bg-opacity-20 hover:bg-current;
+        }
+
+
+        @media (max-width: 640px) {
+            .container {
+                @apply px-3;
+            }
+
+            .hero-bg {
+                @apply py-12 px-4;
+            }
+
+            h1 {
+                @apply text-3xl;
+            }
+
+            pre {
+                @apply p-3 text-xs;
+            }
+        }
+
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 
@@ -94,14 +141,7 @@
             </svg>
             <span class="text-2xl font-bold text-slate-900 dark:text-white">UzSQL</span>
         </div>
-        <nav class="hidden md:flex items-center gap-6">
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#features">Afzalliklar</a>
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#create-form">Foydalanish</a>
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors"
-               href="#pricing">Narxlar</a>
-        </nav>
+
         <div class="flex items-center gap-4">
             <a class="hidden sm:block bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors"
                href="#create-form">
@@ -118,12 +158,7 @@
     <!-- MOBILE NAV -->
     <div class="hidden md:hidden" id="mobile-menu">
         <nav class="flex flex-col space-y-4 py-4">
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#features">Afzalliklar</a>
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#create-form">Foydalanish</a>
-            <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors text-center"
-               href="#pricing">Narxlar</a>
+
             <a class="block sm:hidden bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors text-center mt-2"
                href="#create-form">
                 Boshlash
@@ -336,6 +371,39 @@
                          data-sitekey="6LfFqyAsAAAAALM2YJXRRWX48TG_KrSrHZI66E8x">
                     </div>
 
+                    <!-- Alerts container -->
+                    <div id="alerts-container" class="space-y-3 mt-4">
+                        <!-- Success alert template -->
+                        <div id="success-alert" class="alert alert-success" role="alert">
+                            <div class="flex items-start">
+                                <span class="material-symbols-outlined text-green-500 mr-2 mt-0.5">check_circle</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold">Muvaffaqiyatli!</h4>
+                                    <div id="success-message" class="text-sm mt-1"></div>
+                                </div>
+                                <button type="button" class="alert-close text-green-500 hover:text-green-700"
+                                        onclick="this.closest('.alert').remove()" aria-label="Yopish">
+                                    <span class="material-symbols-outlined text-lg">close</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Error alert template -->
+                        <div id="error-alert" class="alert alert-error" role="alert">
+                            <div class="flex items-start">
+                                <span class="material-symbols-outlined text-red-500 mr-2 mt-0.5">error</span>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold">Xatolik!</h4>
+                                    <div id="error-message" class="text-sm mt-1"></div>
+                                </div>
+                                <button type="button" class="alert-close text-red-500 hover:text-red-700"
+                                        onclick="this.closest('.alert').remove()" aria-label="Yopish">
+                                    <span class="material-symbols-outlined text-lg">close</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Submit button -->
                     <div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                         <button
@@ -354,19 +422,6 @@
                     </div>
                 </form>
 
-                <!-- Success alert -->
-                <div
-                        id="success-alert"
-                        class="hidden mt-6 rounded-xl border border-blue-600/40 bg-[#031838] text-blue-100 px-6 py-4 text-sm shadow-lg transition-all duration-300"
-                        role="alert">
-                </div>
-
-                <!-- Error alert -->
-                <div
-                        id="error-alert"
-                        class="hidden mt-4 rounded-xl border border-red-600/40 bg-red-900 text-red-100 px-6 py-4 text-sm shadow-lg transition-all duration-300"
-                        role="alert">
-                </div>
             </div>
         </section>
 
@@ -553,7 +608,7 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
     <footer class="border-t border-slate-200 dark:border-slate-800 mt-16 py-8">
         <div
                 class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-sm text-slate-500 dark:text-slate-400">
-            <p>© 2024 UzSQL. Barcha huquqlar himoyalangan.</p>
+            <p> 2024 UzSQL. Barcha huquqlar himoyalangan.</p>
             <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 sm:mt-0">
                 <a class="hover:text-primary dark:hover:text-primary-light" href="#">Xizmat ko'rsatish shartlari</a>
                 <a class="hover:text-primary dark:hover:text-primary-light" href="#">Maxfiylik siyosati</a>
@@ -658,28 +713,50 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
-        function showSuccessAlert(html) {
-            const alert = document.getElementById("success-alert");
-            alert.innerHTML = html;
-            alert.classList.remove("hidden");
-            alert.classList.remove("opacity-0");
+        function showAlert(type, title, message) {
+            // Clone the template
+            const template = document.getElementById(`${type}-alert`);
+            const alert = template.cloneNode(true);
+            alert.id = ''; // Remove ID to avoid duplicates
 
+            // Set message content
+            const messageEl = alert.querySelector(`#${type}-message`);
+            if (typeof message === 'string') {
+                messageEl.textContent = message;
+            } else {
+                messageEl.innerHTML = '';
+                messageEl.appendChild(message);
+            }
+
+            // Set title if provided
+            const titleEl = alert.querySelector('h4');
+            if (title) {
+                titleEl.textContent = title;
+            }
+
+            // Add to container
+            const container = document.getElementById('alerts-container');
+            container.prepend(alert);
+
+            // Show with animation
+            setTimeout(() => alert.classList.add('show'), 10);
+
+            // Auto-hide after 8 seconds
             setTimeout(() => {
-                alert.classList.add("opacity-0");
-                setTimeout(() => alert.classList.add("hidden"), 300);
-            }, 4000);
+                alert.classList.remove('show');
+                // Remove after animation completes
+                setTimeout(() => alert.remove(), 300);
+            }, 8000);
+
+            return alert;
         }
 
-        function showErrorAlert(msg) {
-            const alert = document.getElementById("error-alert");
-            alert.textContent = msg;
-            alert.classList.remove("hidden");
-            alert.classList.remove("opacity-0");
+        function showSuccessAlert(html, title = 'Muvaffaqiyatli!') {
+            return showAlert('success', title, html);
+        }
 
-            setTimeout(() => {
-                alert.classList.add("opacity-0");
-                setTimeout(() => alert.classList.add("hidden"), 300);
-            }, 4000);
+        function showErrorAlert(message, title = 'Xatolik!') {
+            return showAlert('error', title, message);
         }
 
         form.addEventListener("submit", async function (e) {
