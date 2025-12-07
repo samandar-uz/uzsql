@@ -14,8 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static org.example.uzsql.utils.DbUtils.*;
 
 @Slf4j
 @Service
@@ -25,6 +26,7 @@ public class DatabaseService {
     private final CreatedDatabasesRepository repository;
     private final MailService mailService;
     private final Generate generate;
+    private final RecaptchaService recaptchaService;
 
     @Value("${spring.datasource.url}")
     private String mysqlUrl;
@@ -41,57 +43,45 @@ public class DatabaseService {
     @Value("${db.port:3306}")
     private Integer dbPort;
 
-
     @Transactional
-    public String createDb(CreateRequest req) {
-        String dbName = sanitizeIdentifier(req.getDbName());
-        String username = sanitizeIdentifier(req.getDbUser());
+    public String createDb(CreateRequest req, String userIp) {
+        boolean captchaVerified = recaptchaService.verify(
+                req.getRecaptchaToken(),
+                userIp
+        );
+
+        if (!captchaVerified) {
+            throw new IllegalArgumentException("Recaptcha tasdiqlanmadi. Qayta urinib ko‘ring.");
+        }
+
+        String dbName = generate.sanitizeIdentifier(req.getDbName());
+        String username = generate.sanitizeIdentifier(req.getDbUser());
         String password = generate.generateStrongPassword();
 
         if (repository.existsByName(dbName)) {
-            throw new DatabaseAlreadyExistsException(
-                    "Database nomi allaqachon mavjud: " + dbName
-            );
+            throw new DatabaseAlreadyExistsException("Database nomi allaqachon mavjud: " + dbName);
         }
 
         Connection connection = null;
+
         try {
             connection = DriverManager.getConnection(mysqlUrl, mysqlUser, mysqlPass);
             connection.setAutoCommit(false);
             executeUpdate(connection, "CREATE DATABASE IF NOT EXISTS `" + dbName + "`");
-            log.info("Database yaratildi: {}", dbName);
-
-            String createUserSql = "CREATE USER IF NOT EXISTS ?@'%' IDENTIFIED BY ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(createUserSql)) {
-                pstmt.setString(1, username);
-                pstmt.setString(2, password);
-                pstmt.executeUpdate();
-            }
-            log.info("User yaratildi: {}", username);
+            String createUserSql = "CREATE USER IF NOT EXISTS '" + username + "'@'%' IDENTIFIED BY '" + password + "'";
+            executeUpdate(connection, createUserSql);
             executeUpdate(connection, "GRANT ALL PRIVILEGES ON `" + dbName + "`.* TO '" + username + "'@'%'");
             executeUpdate(connection, "FLUSH PRIVILEGES");
             connection.commit();
-            log.info("Barcha huquqlar berildi va saqlandi");
+            log.info("Database va user muvaffaqiyatli yaratildi");
 
         } catch (SQLException e) {
-            if (connection != null) {
-                try {
-                    connection.rollback();
-                    log.warn("Transaction rollback qilindi");
-                } catch (SQLException ex) {
-                    log.error("Rollback xatosi: {}", ex.getMessage());
-                }
-            }
-            log.error("MySQL xatosi: {}", e.getMessage(), e);
-            throw new DatabaseCreationException("Database yaratishda xatolik: " + e.getMessage(), e);
+            rollbackQuietly(connection);
+            log.error("MySQL xatosi", e);
+            throw new DatabaseCreationException("Database yaratishda xatolik: " + e.getMessage(), e
+            );
         } finally {
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException e) {
-                    log.error("Connection yopishda xatolik: {}", e.getMessage());
-                }
-            }
+            closeQuietly(connection);
         }
         CreatedDatabases saved = repository.save(
                 CreatedDatabases.builder()
@@ -107,35 +97,13 @@ public class DatabaseService {
 
         try {
             mailService.sendCredentialsEmail(dbName, username, password, req.getEmail());
-            log.info("Email yuborildi: {}", req.getEmail());
         } catch (Exception e) {
-            log.error("Email yuborishda xatolik: {}", e.getMessage());
+            log.error("Email yuborishda xatolik", e);
         }
 
         return saved.getEmail();
     }
 
-    private String sanitizeIdentifier(String identifier) {
-        if (identifier == null || identifier.trim().isEmpty()) {
-            throw new IllegalArgumentException("Identifier bo'sh bo'lishi mumkin emas");
-        }
-        if (!identifier.matches("^[a-zA-Z0-9_]+$")) {
-            throw new IllegalArgumentException(
-                    "Identifier faqat harflar, raqamlar va '_' dan iborat bo'lishi kerak"
-            );
-        }
-        if (identifier.length() > 64) {
-            throw new IllegalArgumentException("Identifier 64 belgidan oshmasligi kerak");
-        }
 
-        return identifier;
-    }
-
-
-    private void executeUpdate(Connection conn, String sql) throws SQLException {
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.executeUpdate();
-        }
-    }
 
 }

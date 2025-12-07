@@ -38,4 +38,20 @@ public class Generate {
         }
         return new String(chars);
     }
+    public String sanitizeIdentifier(String identifier) {
+        if (identifier == null || identifier.trim().isEmpty()) {
+            throw new IllegalArgumentException("Identifier bo‘sh bo‘lishi mumkin emas");
+        }
+        if (!identifier.matches("^[a-zA-Z0-9_]+$")) {
+            throw new IllegalArgumentException(
+                    "Identifier faqat harflar, raqamlar va '_' dan iborat bo‘lishi kerak"
+            );
+        }
+        if (identifier.length() > 64) {
+            throw new IllegalArgumentException(
+                    "Identifier 64 belgidan oshmasligi kerak"
+            );
+        }
+        return identifier;
+    }
 }

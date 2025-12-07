@@ -6,67 +6,28 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>UzSQL</title>
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet" />
-    <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-            rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-    <script>
-        window.tailwind = window.tailwind || {};
-    </script>
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            DEFAULT: "#4338ca",
-                            dark: "#3730a3",
-                            light: "#e0e7ff",
-                        },
-                        accent: {
-                            DEFAULT: "#10b981",
-                            dark: "#059669",
-                        },
-                        "background-light": "#f8fafc",
-                        "background-dark": "#020617",
-                        "card-light": "#ffffff",
-                        "card-dark": "#0f172a",
-                    },
-                    fontFamily: {
-                        sans: ["Manrope", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "0.75rem",
-                        xl: "1rem",
-                        "2xl": "1.5rem",
-                    },
-                },
-            },
-        };
-    </script>
-
     <style>
-        .material-symbols-outlined {
-            font-variation-settings:
-                    "FILL" 1,
-                    "wght" 400,
-                    "GRAD" 0,
-                    "opsz" 24;
+        :root {
+            --primary: #4338ca;
+            --primary-dark: #3730a3;
+            --primary-light: #e0e7ff;
+            --accent: #10b981;
+            --accent-dark: #059669;
         }
+
+
 
         .hero-bg {
             background-color: #0f172a;
@@ -78,721 +39,369 @@
                     radial-gradient(at 97% 96%, hsla(243, 70%, 45%, 0.2) 0px, transparent 50%),
                     radial-gradient(at 33% 50%, hsla(220, 80%, 40%, 0.25) 0px, transparent 50%),
                     radial-gradient(at 79% 53%, hsla(243, 80%, 35%, 0.2) 0px, transparent 50%);
+            border-radius: 1.5rem;
         }
 
-        /* Enhanced Alerts */
-        .alert {
-            @apply p-4 rounded-lg mb-4 flex items-start transition-all duration-300 ease-in-out transform;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-            border: 1px solid transparent;
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
         }
 
-        .alert-success {
-            @apply bg-green-100 border-green-400 text-green-800 dark:bg-green-900/30 dark:border-green-800 dark:text-green-300;
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
         }
 
-        .alert-error {
-            @apply bg-red-100 border-red-400 text-red-800 dark:bg-red-900/30 dark:border-red-800 dark:text-red-300;
+        .btn-dark-custom {
+            background-color: rgba(15, 23, 42, 0.9);
+            border: none;
         }
 
-        .alert-close {
-            @apply ml-auto -mx-1.5 -my-1.5 p-1.5 inline-flex items-center justify-center h-8 w-8 rounded-lg focus:ring-2 focus:ring-opacity-40 hover:bg-opacity-20 hover:bg-current;
+        .btn-dark-custom:hover {
+            background-color: #0f172a;
         }
 
-
-        @media (max-width: 640px) {
-            .container {
-                @apply px-3;
-            }
-
-            .hero-bg {
-                @apply py-12 px-4;
-            }
-
-            h1 {
-                @apply text-3xl;
-            }
-
-            pre {
-                @apply p-3 text-xs;
-            }
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
         }
 
-        /* Smooth scrolling for anchor links */
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-badge {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+        }
+
+        .input-icon input {
+            padding-left: 40px;
+        }
+
         html {
             scroll-behavior: smooth;
         }
+
+        code {
+            background-color: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+
+        .pastel-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(
+                    125% 125% at 50% 90%,
+                    #ffffff 40%,
+                    #6366f1 100%
+            );
+        }
+
+
+
     </style>
 </head>
 
-<body class="font-sans bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 antialiased">
-<div class="container mx-auto px-4 sm:px-6 py-4">
-    <!-- HEADER -->
-    <header class="flex justify-between items-center py-4">
-        <div class="flex items-center gap-3">
-            <svg fill="none" height="36" viewBox="0 0 36 36" width="36" xmlns="http://www.w3.org/2000/svg">
-                <rect class="fill-primary" height="36" rx="8" width="36"></rect>
-                <path d="M10 15H17L10 29V21H17" stroke="white" stroke-linecap="round" stroke-linejoin="round"
-                      stroke-width="2.5"></path>
-            </svg>
-            <span class="text-2xl font-bold text-slate-900 dark:text-white">UzSQL</span>
+<body>
+<div class="pastel-bg"></div>
+
+<div class="container py-4">
+    <header class="d-flex justify-content-between align-items-center py-3">
+        <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-database-fill text-primary fs-2"></i>
+
+            <span class="fs-3 fw-bold text-dark">UzSQL</span>
         </div>
 
-        <div class="flex items-center gap-4">
-            <a class="hidden sm:block bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors"
-               href="#create-form">
+        <div class="d-flex align-items-center gap-3">
+            <a class="btn btn-primary fw-semibold d-none d-sm-block" href="#create-form">
                 Boshlash
             </a>
-            <button
-                    class="md:hidden p-2 rounded-md text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
-                    onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                <span class="material-symbols-outlined">menu</span>
+            <button class="btn d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
+                <i class="bi bi-list fs-4"></i>
             </button>
         </div>
     </header>
 
-    <!-- MOBILE NAV -->
-    <div class="hidden md:hidden" id="mobile-menu">
-        <nav class="flex flex-col space-y-4 py-4">
 
-            <a class="block sm:hidden bg-primary-dark text-white font-semibold py-2 px-5 rounded-lg hover:bg-primary transition-colors text-center mt-2"
-               href="#create-form">
+    <div class="collapse d-md-none" id="mobileMenu">
+        <nav class="py-3">
+            <a class="btn btn-primary fw-semibold w-100" href="#create-form">
                 Boshlash
             </a>
         </nav>
     </div>
 
     <main>
-        <!-- HERO -->
-        <section class="text-center py-16 sm:py-32 rounded-3xl mt-6 hero-bg px-4">
-            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-white max-w-4xl mx-auto">
-                Tezkor MySQL Ma'lumotlar bazasi. Bir lahzada.
-            </h1>
+        <section class="text-center py-5 hero-bg mt-4 px-4">
+            <div class="py-5">
+                <h1 class="display-4 fw-bold text-white mb-4">
+                  UzSQL bilan MySQL bazasini bir necha daqiqada yarating
+                </h1>
+                <p class="lead text-white-50 mb-5" style="max-width: 820px; margin: 0 auto;">
+                    Hech qanday o‘rnatish, murakkab sozlamalar va server konfiguratsiyasiz.
+                    Formani to‘ldiring — qolgan barcha texnik ishlarni UzSQL avtomatik bajaradi.
+                </p>
+                <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
+                    <a class="btn btn-primary btn-lg fw-bold px-4" href="#create-form">
+                      Bepul boshlash
+                    </a>
+                    <a href="#" class="btn btn-dark-custom btn-lg text-white fw-semibold px-4">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>
+                        phpMyAdmin
+                    </a>
+                </div>
 
-            <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a class="w-full sm:w-auto inline-block bg-primary text-white font-bold py-3 px-6 sm:px-8 rounded-lg text-base sm:text-lg hover:bg-primary-dark transition-colors"
-                   href="#create-form">
-                    Bepul Baza Yaratish
-                </a>
-                <a href="#"
-                   class="w-full sm:w-auto inline-flex items-center justify-center gap-3
-                      bg-slate-900/90 hover:bg-slate-900 text-white font-semibold
-                      py-3 px-6 sm:px-8 rounded-xl text-base sm:text-lg
-                      transition-all duration-200 shadow-md hover:shadow-lg">
-                    <span class="material-symbols-outlined text-xl">launch</span>
-                    <span>phpMyAdmin</span>
-                </a>
             </div>
         </section>
 
-        <!-- FEATURES -->
-        <section id="features" class="py-16 sm:py-24">
-            <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
+        <section id="features" class="py-5">
+            <div class="text-center mx-auto" style="max-width: 800px;">
+                <h2 class="display-5 fw-bold">
                     Nima uchun UzSQL ni tanlashingiz kerak?
                 </h2>
-                <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">
+                <p class="lead text-muted mt-3">
                     Bizning platformamiz dasturlash jarayonini soddalashtirish va loyihalaringizni tezlashtirish uchun mo'ljallangan.
                 </p>
             </div>
-            <div class="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div
-                        class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
-                    <div
-                            class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">bolt</span>
+
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-lightning-charge-fill"></i>
+                            </div>
+                            <h3 class="h5 fw-semibold">Tezkor O'rnatish</h3>
+                            <p class="text-muted">
+                                Bir necha daqiqada o'z ma'lumotlar bazangizni ishga tushiring.
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Tezkor O'rnatish</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">
-                        Bir necha daqiqada o'z ma'lumotlar bazangizni ishga tushiring.
-                    </p>
                 </div>
-                <div
-                        class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
-                    <div
-                            class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">stars</span>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-stars"></i>
+                            </div>
+                            <h3 class="h5 fw-semibold">Mutlaqo Bepul</h3>
+                            <p class="text-muted">
+                                Hech qanday yashirin to'lovlar va cheklovlarsiz foydalaning.
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Mutlaqo Bepul</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">
-                        Hech qanday yashirin to'lovlar va cheklovlarsiz foydalaning.
-                    </p>
                 </div>
-                <div
-                        class="flex flex-col items-center text-center p-6 bg-card-light dark:bg-card-dark rounded-xl border border-slate-200 dark:border-slate-800">
-                    <div
-                            class="w-16 h-16 rounded-full bg-primary-light dark:bg-primary-dark/30 flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary dark:text-indigo-300 text-3xl">security</span>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="h5 fw-semibold">Ishonchli Infratuzilma</h3>
+                            <p class="text-muted">
+                                Ma'lumotlaringiz xavfsizligi va barqaror ishlashi kafolatlanadi.
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Ishonchli Infratuzilma</h3>
-                    <p class="mt-2 text-slate-600 dark:text-slate-400">
-                        Ma'lumotlaringiz xavfsizligi va barqaror ishlashi kafolatlanadi.
-                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- CREATE FORM -->
-        <section id="create-form" class="py-16 sm:py-24">
-            <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
-                    Baza yaratish
-                </h2>
-                <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">
-                    Yangi MySQL bazasini yaratish uchun quyidagi ma'lumotlarni to'ldiring. Bir necha soniyada tayyor bo‘ladi.
+
+        <section id="create-form" class="py-5">
+            <div class="text-center mx-auto" style="max-width: 800px;">
+                <h2 class="display-5 fw-bold">Baza yaratish</h2>
+                <p class="lead text-muted mt-3">
+                    Yangi MySQL bazasini yaratish uchun quyidagi ma'lumotlarni to'ldiring. Bir necha soniyada tayyor bo'ladi.
                 </p>
             </div>
 
-            <div
-                    class="mt-12 max-w-3xl mx-auto bg-card-light dark:bg-card-dark p-6 sm:p-10 rounded-2xl shadow-lg border border-slate-200/80 dark:border-slate-800">
-
-                <!-- Info badge -->
-                <div
-                        class="mb-6 flex items-start gap-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 px-4 py-3">
-                    <span class="material-symbols-outlined text-primary text-xl mt-0.5">info</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 text-left">
+            <div class="mx-auto mt-5 form-card p-4 p-md-5" style="max-width: 800px;">
+                <div class="info-badge p-3 mb-4 d-flex gap-2">
+                    <i class="bi bi-info-circle-fill text-primary mt-1"></i>
+                    <p class="mb-0 small">
                         Baza nomi va foydalanuvchi nomi faqat
-                        <span class="font-semibold">lotin harflari, raqamlar</span> va
-                        <code class="px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-xs">_</code>
-                        (underscore) dan iborat bo‘lishi mumkin.
+                        <span class="fw-semibold">lotin harflari, raqamlar</span> va
+                        <code>_</code> (underscore) dan iborat bo'lishi mumkin.
                     </p>
                 </div>
 
-                <form id="db-creation-form" action="/create" method="POST" class="space-y-6" novalidate>
+                <form id="db-creation-form" novalidate>
                     <!-- DB name -->
-                    <div>
-                        <label for="db-name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                            Baza nomi
-                        </label>
-                        <div class="mt-1 relative">
-                            <span
-                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                                dns
-                            </span>
+                    <div class="mb-4">
+                        <label for="db-name" class="form-label fw-medium">Baza nomi</label>
+                        <div class="input-icon">
+                            <i class="bi bi-database"></i>
                             <input
+                                    type="text"
+                                    class="form-control form-control-lg"
                                     id="db-name"
-                                    name="db-name"
-                                    type="text"
                                     required
                                     minlength="3"
                                     maxlength="32"
                                     pattern="^[A-Za-z0-9_]+$"
-                                    autocomplete="off"
-                                    class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                                       focus:border-primary focus:ring-primary sm:text-sm
-                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                                       pl-10"
-                                    placeholder="masalan, uzsql_project"
-                                    aria-describedby="db-name-help db-name-error"
                             />
                         </div>
-                        <p id="db-name-help" class="mt-2 text-xs text-slate-500 dark:text-slate-400">
-                            3–32 ta belgi. Faqat harf, raqam va
-                            <code class="px-1 rounded bg-slate-200/70 dark:bg-slate-800 text-[10px]">_</code>.
-                        </p>
-                        <p id="db-name-error" class="mt-1 text-xs text-red-500 hidden">
-                            Baza nomi noto‘g‘ri kiritildi.
-                        </p>
+                        <div class="form-text">
+                            3–32 ta belgi. Faqat harf, raqam va <code>_</code>.
+                        </div>
+                        <div class="invalid-feedback">
+                            Baza nomi noto'g'ri kiritildi.
+                        </div>
                     </div>
-
-                    <!-- Username -->
-                    <div>
-                        <label for="user-name" class="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                            Foydalanuvchi nomi
-                        </label>
-                        <div class="mt-1 relative">
-                            <span
-                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                                person
-                            </span>
+                    <div class="mb-4">
+                        <label for="user-name" class="form-label fw-medium">Foydalanuvchi nomi</label>
+                        <div class="input-icon">
+                            <i class="bi bi-person"></i>
                             <input
+                                    type="text"
+                                    class="form-control form-control-lg"
                                     id="user-name"
-                                    name="user-name"
-                                    type="text"
                                     required
                                     minlength="3"
                                     maxlength="32"
                                     pattern="^[A-Za-z0-9_]+$"
-                                    autocomplete="off"
-                                    class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                                       focus:border-primary focus:ring-primary sm:text-sm
-                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                                       pl-10"
-                                    placeholder="masalan, uzsql_user"
-                                    aria-describedby="user-name-help user-name-error"
                             />
                         </div>
-                        <p id="user-name-help" class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+                        <div class="form-text">
                             Baza foydalanuvchisi uchun login nomi.
-                        </p>
-                        <p id="user-name-error" class="mt-1 text-xs text-red-500 hidden">
-                            Foydalanuvchi nomi noto‘g‘ri kiritildi.
-                        </p>
+                        </div>
+                        <div class="invalid-feedback">
+                            Foydalanuvchi nomi noto'g'ri kiritildi.
+                        </div>
                     </div>
 
-                    <!-- Email -->
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300">
-                            Gmail
-                        </label>
-                        <div class="mt-1 relative">
-                            <span
-                                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                                mail
-                            </span>
+                    <div class="mb-4">
+                        <label for="email" class="form-label fw-medium">Gmail</label>
+                        <div class="input-icon">
+                            <i class="bi bi-envelope"></i>
                             <input
-                                    id="email"
-                                    name="email"
                                     type="email"
+                                    class="form-control form-control-lg"
+                                    id="email"
                                     required
-                                    autocomplete="email"
-                                    class="block w-full rounded-lg border-slate-300 dark:border-slate-700 shadow-sm
-                                       focus:border-primary focus:ring-primary sm:text-sm
-                                       bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-slate-200
-                                       pl-10"
-                                    placeholder="example@gmail.com"
-                                    aria-describedby="email-error"
                             />
                         </div>
-                        <p id="email-error" class="mt-2 text-xs text-red-500 hidden">
-                            Iltimos, to‘g‘ri Gmail manzil kiriting.
-                        </p>
-                        <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                        <div class="form-text">
                             Yaratilgan baza ma'lumotlari ushbu manzilga yuboriladi.
-                        </p>
-                    </div>
-
-                    <!-- reCAPTCHA -->
-                    <div class="g-recaptcha"
-                         data-sitekey="6LfFqyAsAAAAALM2YJXRRWX48TG_KrSrHZI66E8x">
-                    </div>
-
-                    <!-- Alerts container -->
-                    <div id="alerts-container" class="space-y-3 mt-4">
-                        <!-- Success alert template -->
-                        <div id="success-alert" class="alert alert-success" role="alert">
-                            <div class="flex items-start">
-                                <span class="material-symbols-outlined text-green-500 mr-2 mt-0.5">check_circle</span>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold">Muvaffaqiyatli!</h4>
-                                    <div id="success-message" class="text-sm mt-1"></div>
-                                </div>
-                                <button type="button" class="alert-close text-green-500 hover:text-green-700"
-                                        onclick="this.closest('.alert').remove()" aria-label="Yopish">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </button>
-                            </div>
                         </div>
-
-                        <!-- Error alert template -->
-                        <div id="error-alert" class="alert alert-error" role="alert">
-                            <div class="flex items-start">
-                                <span class="material-symbols-outlined text-red-500 mr-2 mt-0.5">error</span>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold">Xatolik!</h4>
-                                    <div id="error-message" class="text-sm mt-1"></div>
-                                </div>
-                                <button type="button" class="alert-close text-red-500 hover:text-red-700"
-                                        onclick="this.closest('.alert').remove()" aria-label="Yopish">
-                                    <span class="material-symbols-outlined text-lg">close</span>
-                                </button>
-                            </div>
+                        <div class="invalid-feedback">
+                            Iltimos, to'g'ri Gmail manzil kiriting.
                         </div>
                     </div>
 
-                    <!-- Submit button -->
-                    <div class="pt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                        <button
-                                type="submit"
-                                aria-label="Baza yaratish"
-                                class="inline-flex w-full sm:w-auto items-center justify-center gap-3
-                                   bg-primary text-white font-semibold py-3 px-6 sm:px-8
-                                   rounded-lg text-base sm:text-lg shadow
-                                   hover:bg-primary/90 transition-all duration-200
-                                   focus:outline-none focus:ring-4 focus:ring-primary/30
-                                   disabled:opacity-60 disabled:cursor-not-allowed"
-                        >
-                            <span class="material-symbols-outlined text-xl" id="submit-icon">add</span>
+                    <div class="mb-4">
+                        <div class="g-recaptcha" data-sitekey="6LfFqyAsAAAAALM2YJXRRWX48TG_KrSrHZI66E8x"></div>
+                    </div>
+                    <div id="alerts-container"></div>
+
+                    <div class="d-grid gap-2 d-sm-flex">
+                        <button type="submit" class="btn btn-primary btn-lg fw-semibold px-5">
+                            <i class="bi bi-plus-circle me-2" id="submit-icon"></i>
                             <span id="submit-text">Baza yaratish</span>
                         </button>
                     </div>
                 </form>
-
-            </div>
-        </section>
-
-        <!-- CONNECTION EXAMPLES -->
-        <section class="py-16 sm:py-24">
-            <div class="text-center max-w-3xl mx-auto">
-                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-                    Ulanish Namunasi
-                </h2>
-                <p class="mt-4 text-base md:text-lg text-slate-600 dark:text-slate-400">
-                    Yangi yaratilgan MySQL bazaga turli dasturlash tillari yordamida ulanish misollari.
-                </p>
-            </div>
-
-            <div class="mt-12 max-w-4xl mx-auto">
-                <div
-                        class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-card-light dark:bg-card-dark">
-                    <!-- Tabs -->
-                    <div
-                            class="border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between gap-4">
-                        <div class="flex items-center gap-1 sm:gap-2 text-sm overflow-x-auto">
-                            <button
-                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm font-semibold flex-shrink-0
-                                       bg-primary-light text-primary-foreground dark:bg-primary-dark/80 dark:text-white
-                                       shadow-sm"
-                                    data-lang="python">
-                                Python
-                            </button>
-                            <button
-                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
-                                    data-lang="php">
-                                PHP
-                            </button>
-                            <button
-                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
-                                    data-lang="java">
-                                Java
-                            </button>
-                            <button
-                                    class="lang-tab px-3 sm:px-4 py-2 rounded-md text-xs sm:text-sm flex-shrink-0
-                                       text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60"
-                                    data-lang="cli">
-                                CLI
-                            </button>
-                        </div>
-                        <div
-                                class="hidden sm:flex items-center gap-2 text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
-                            <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                            <span>uzsql.cloud • 3306</span>
-                        </div>
-                    </div>
-
-                    <!-- Code block -->
-                    <div class="relative bg-[#1f2933] dark:bg-[#111827] p-4 sm:p-6">
-                        <button type="button"
-                                class="copy-btn absolute top-3 right-3 sm:top-4 sm:right-4
-                                       inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5
-                                       text-xs font-medium text-white bg-slate-700/80 hover:bg-slate-600
-                                       dark:bg-slate-600/80 dark:hover:bg-slate-500 transition-colors">
-                            <span class="material-symbols-outlined text-sm">content_copy</span>
-                            <span class="hidden sm:inline">Nusxalash</span>
-                        </button>
-
-                        <div class="mb-4 flex items-center justify-between text-[11px] sm:text-xs text-slate-400">
-                            <div class="flex items-center gap-2">
-                                <span class="inline-flex h-2 w-2 rounded-full bg-rose-500"></span>
-                                <span class="inline-flex h-2 w-2 rounded-full bg-amber-400"></span>
-                                <span class="inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                            </div>
-                        </div>
-
-                        <!-- Python -->
-                        <pre class="lang-code font-mono text-xs sm:text-sm text-slate-200 whitespace-pre overflow-x-auto"
-                             data-lang="python"><code>
-import mysql.connector
-
-# O'zgaruvchilarni o'zgartiring
-config = {
-    "user": "foydalanuvchi_nomi",
-    "password": "parolingiz",
-    "host": "45.92.173.158",
-    "database": "baza_nomi",
-    "raise_on_warnings": True
-}
-
-try:
-    cnx = mysql.connector.connect(**config)
-    print("Ulanish muvaffaqiyatli!")
-    cnx.close()
-except mysql.connector.Error as err:
-    print(f"Xatolik: {err}")
-</code></pre>
-
-                        <!-- PHP -->
-                        <pre class="lang-code hidden font-mono text-xs sm:text-sm text-slate-200 whitespace-pre overflow-x-auto"
-                             data-lang="php"><code>
-&lt;?php
-$host = "uzsql.cloud";
-$dbname = "baza_nomi";
-$user = "foydalanuvchi_nomi";
-$pass = "parolingiz";
-
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, [
-        PDO::ATTR_ERRMODE =&gt; PDO::ERRMODE_EXCEPTION,
-    ]);
-    echo "Ulanish muvaffaqiyatli!";
-} catch (PDOException $e) {
-    echo "Xatolik: " . $e-&gt;getMessage();
-}
-</code></pre>
-
-                        <!-- Java -->
-                        <pre class="lang-code hidden font-mono text-xs sm:text-sm text-slate-200 whitespace-pre overflow-x-auto"
-                             data-lang="java"><code>
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-public class UzSqlConnection {
-    public static void main(String[] args) {
-        String url = "jdbc:mysql://uzsql.cloud:3306/baza_nomi";
-        String user = "foydalanuvchi_nomi";
-        String password = "parolingiz";
-
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            System.out.println("Ulanish muvaffaqiyatli!");
-        } catch (SQLException e) {
-            System.out.println("Xatolik: " + e.getMessage());
-        }
-    }
-}
-</code></pre>
-
-                        <!-- CLI -->
-                        <pre class="lang-code hidden font-mono text-xs sm:text-sm text-slate-200 whitespace-pre overflow-x-auto"
-                             data-lang="cli"><code>
-# Terminal yoki CMD orqali ulanish
-mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
-
-# Parol so'ralganda parolingizni kiriting
-</code></pre>
-                    </div>
-                </div>
-
-                <div class="mt-6 text-sm text-slate-600 dark:text-slate-400 space-y-2">
-                    <p>
-                        <span class="font-semibold text-slate-700 dark:text-slate-300">Izoh:</span>
-                        Yuqoridagi
-                        <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">foydalanuvchi_nomi</code>,
-                        <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">parolingiz</code>
-                        va
-                        <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-xs">baza_nomi</code>
-                        qiymatlarini o'zingizning ma'lumotlaringiz bilan almashtiring.
-                    </p>
-                    <p class="text-xs text-slate-500 dark:text-slate-500">
-                        Agar port o'zgartirilgan bo'lsa, mos ravishda
-                        <code class="bg-slate-200 dark:bg-slate-700 px-1 py-0.5 rounded text-[10px]">3306</code>
-                        o'rniga o'zingizning port raqamingizni yozing.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SIMPLE PRICING PLACEHOLDER -->
-        <section id="pricing" class="py-12 sm:py-16">
-            <div class="text-center max-w-2xl mx-auto">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
-                    Narxlar
-                </h2>
-                <p class="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400">
-                    Hozircha UzSQL mutlaqo bepul test rejimida ishlamoqda. Kelajakda qo‘shimcha premium
-                    funksiyalar qo‘shilishi mumkin.
-                </p>
             </div>
         </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 mt-16 py-8">
-        <div
-                class="flex flex-col sm:flex-row justify-between items-center text-center sm:text-left text-sm text-slate-500 dark:text-slate-400">
-            <p> 2024 UzSQL. Barcha huquqlar himoyalangan.</p>
-            <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 sm:mt-0">
-                <a class="hover:text-primary dark:hover:text-primary-light" href="#">Xizmat ko'rsatish shartlari</a>
-                <a class="hover:text-primary dark:hover:text-primary-light" href="#">Maxfiylik siyosati</a>
+    <footer class="border-top mt-5 py-4">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center text-muted small">
+            <p class="mb-3 mb-sm-0">2024 UzSQL. Barcha huquqlar himoyalangan.</p>
+            <div class="d-flex gap-4">
+                <a href="#" class="text-decoration-none text-muted">Xizmat ko'rsatish shartlari</a>
+                <a href="#" class="text-decoration-none text-muted">Maxfiylik siyosati</a>
             </div>
         </div>
     </footer>
 </div>
 
-<!-- LANGUAGE TABS + COPY BUTTON SCRIPT -->
-<script>
-    (function () {
-        const tabs = document.querySelectorAll(".lang-tab");
-        const codeBlocks = document.querySelectorAll(".lang-code");
-        const copyBtn = document.querySelector(".copy-btn");
 
-        function setActiveLang(lang) {
-            tabs.forEach((tab) => {
-                if (tab.dataset.lang === lang) {
-                    tab.classList.add(
-                        "bg-primary-light",
-                        "text-primary-foreground",
-                        "dark:bg-primary-dark/80",
-                        "dark:text-white",
-                        "shadow-sm",
-                        "font-semibold"
-                    );
-                } else {
-                    tab.classList.remove(
-                        "bg-primary-light",
-                        "text-primary-foreground",
-                        "dark:bg-primary-dark/80",
-                        "dark:text-white",
-                        "shadow-sm",
-                        "font-semibold"
-                    );
-                    tab.classList.add(
-                        "text-slate-600",
-                        "dark:text-slate-400"
-                    );
-                }
-            });
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-            codeBlocks.forEach((block) => {
-                block.classList.toggle(
-                    "hidden",
-                    block.dataset.lang !== lang
-                );
-            });
-        }
 
-        tabs.forEach((tab) => {
-            tab.addEventListener("click", () => {
-                setActiveLang(tab.dataset.lang);
-            });
-        });
-
-        if (copyBtn) {
-            copyBtn.addEventListener("click", async () => {
-                const active = document.querySelector(".lang-code:not(.hidden) code");
-                if (!active) return;
-
-                const text = active.innerText.replace(/\u00A0/g, " ");
-
-                try {
-                    await navigator.clipboard.writeText(text.trim());
-                    const oldHtml = copyBtn.innerHTML;
-                    copyBtn.innerHTML =
-                        '<span class="material-symbols-outlined text-sm">check</span><span class="hidden sm:inline">Nusxalandi</span>';
-                    setTimeout(() => {
-                        copyBtn.innerHTML = oldHtml;
-                    }, 1500);
-                } catch (e) {
-                    console.error(e);
-                }
-            });
-        }
-
-        // Default language
-        setActiveLang("python");
-    })();
-</script>
-
-<!-- FORM + RECAPTCHA + ALERT SCRIPT -->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-
         const form = document.getElementById("db-creation-form");
-
         const dbNameInput = document.getElementById("db-name");
         const userNameInput = document.getElementById("user-name");
         const emailInput = document.getElementById("email");
-
-        const dbNameError = document.getElementById("db-name-error");
-        const userNameError = document.getElementById("user-name-error");
-        const emailError = document.getElementById("email-error");
-
         const submitBtn = form.querySelector("button[type='submit']");
         const submitBtnText = document.getElementById("submit-text");
         const submitBtnIcon = document.getElementById("submit-icon");
 
-        function isValidEmail(email) {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        }
+        function showAlert(type, message) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
 
-        function showAlert(type, title, message) {
-            // Clone the template
-            const template = document.getElementById(`${type}-alert`);
-            const alert = template.cloneNode(true);
-            alert.id = ''; // Remove ID to avoid duplicates
-
-            // Set message content
-            const messageEl = alert.querySelector(`#${type}-message`);
-            if (typeof message === 'string') {
-                messageEl.textContent = message;
-            } else {
-                messageEl.innerHTML = '';
-                messageEl.appendChild(message);
-            }
-
-            // Set title if provided
-            const titleEl = alert.querySelector('h4');
-            if (title) {
-                titleEl.textContent = title;
-            }
-
-            // Add to container
             const container = document.getElementById('alerts-container');
-            container.prepend(alert);
+            container.innerHTML = '';
+            container.appendChild(alertDiv);
 
-            // Show with animation
-            setTimeout(() => alert.classList.add('show'), 10);
-
-            // Auto-hide after 8 seconds
             setTimeout(() => {
-                alert.classList.remove('show');
-                // Remove after animation completes
-                setTimeout(() => alert.remove(), 300);
+                alertDiv.classList.remove('show');
+                setTimeout(() => alertDiv.remove(), 150);
             }, 8000);
-
-            return alert;
-        }
-
-        function showSuccessAlert(html, title = 'Muvaffaqiyatli!') {
-            return showAlert('success', title, html);
-        }
-
-        function showErrorAlert(message, title = 'Xatolik!') {
-            return showAlert('error', title, message);
         }
 
         form.addEventListener("submit", async function (e) {
             e.preventDefault();
 
-            let isValid = true;
+            form.classList.add('was-validated');
 
-            // Validation
-            if (dbNameInput.value.trim() === "") {
-                dbNameError.classList.remove("hidden");
-                isValid = false;
-            } else dbNameError.classList.add("hidden");
-
-            if (userNameInput.value.trim() === "") {
-                userNameError.classList.remove("hidden");
-                isValid = false;
-            } else userNameError.classList.add("hidden");
-
-            if (!isValidEmail(emailInput.value.trim())) {
-                emailError.classList.remove("hidden");
-                isValid = false;
-            } else emailError.classList.add("hidden");
-
-            if (!isValid) return;
-
-            // reCAPTCHA
-            const recaptchaToken = grecaptcha.getResponse();
-            if (!recaptchaToken) {
-                showErrorAlert("Recaptcha tasdiqlanmadi! Iltimos, qayta urinib ko‘ring.");
+            if (!form.checkValidity()) {
                 return;
             }
 
-            // Loading state
+            const recaptchaToken = grecaptcha.getResponse();
+            if (!recaptchaToken) {
+                showAlert('danger', '<strong>Xatolik!</strong> Recaptcha tasdiqlanmadi! Iltimos, qayta urinib ko\'ring.');
+                return;
+            }
+
             submitBtn.disabled = true;
-            submitBtnIcon.textContent = "hourglass_empty";
-            submitBtnText.textContent = "Yaratilyapti...";
+            submitBtnIcon.className = 'bi bi-hourglass-split me-2';
+            submitBtnText.textContent = 'Yaratilyapti...';
 
             const payload = {
                 dbName: dbNameInput.value.trim(),
@@ -809,36 +418,27 @@ mysql -h uzsql.cloud -u foydalanuvchi_nomi -p baza_nomi
                 });
 
                 const result = await response.json();
-                // Reset form
+
                 form.reset();
-
-                // Reset reCAPTCHA
+                form.classList.remove('was-validated');
                 grecaptcha.reset();
+
                 if (response.ok && result.status === "success") {
-                    showSuccessAlert(result.data);
-
-
-
-                    // Hide validation errors
-                    dbNameError.classList.add("hidden");
-                    userNameError.classList.add("hidden");
-                    emailError.classList.add("hidden");
+                    showAlert('success', '<strong>Muvaffaqiyatli!</strong> ' + result.data);
                 } else {
-                    showErrorAlert(result.data || "Noma'lum xatolik yuz berdi.");
+                    showAlert('danger', '<strong>Xatolik!</strong> ' + (result.data || "Noma'lum xatolik yuz berdi."));
                 }
 
             } catch (err) {
                 console.error(err);
-                showErrorAlert("Server bilan bog‘lanishda xatolik!");
+                showAlert('danger', '<strong>Xatolik!</strong> Server bilan bog\'lanishda xatolik!');
             }
 
-            // Reset button
             submitBtn.disabled = false;
-            submitBtnIcon.textContent = "add";
-            submitBtnText.textContent = "Baza yaratish";
+            submitBtnIcon.className = 'bi bi-plus-circle me-2';
+            submitBtnText.textContent = 'Baza yaratish';
         });
     });
 </script>
-
 </body>
 </html>
