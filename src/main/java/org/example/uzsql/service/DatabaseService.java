@@ -26,7 +26,6 @@ public class DatabaseService {
     private final CreatedDatabasesRepository repository;
     private final MailService mailService;
     private final Generate generate;
-    private final RecaptchaService recaptchaService;
 
     @Value("${spring.datasource.url}")
     private String mysqlUrl;
@@ -44,15 +43,9 @@ public class DatabaseService {
     private Integer dbPort;
 
     @Transactional
-    public String createDb(CreateRequest req, String userIp) {
-        boolean captchaVerified = recaptchaService.verify(
-                req.getRecaptchaToken(),
-                userIp
-        );
+    public String createDb(CreateRequest req) {
 
-        if (!captchaVerified) {
-            throw new IllegalArgumentException("Recaptcha tasdiqlanmadi. Qayta urinib ko‘ring.");
-        }
+
 
         String dbName = generate.sanitizeIdentifier(req.getDbName());
         String username = generate.sanitizeIdentifier(req.getDbUser());
@@ -67,22 +60,28 @@ public class DatabaseService {
         try {
             connection = DriverManager.getConnection(mysqlUrl, mysqlUser, mysqlPass);
             connection.setAutoCommit(false);
+
             executeUpdate(connection, "CREATE DATABASE IF NOT EXISTS `" + dbName + "`");
-            String createUserSql = "CREATE USER IF NOT EXISTS '" + username + "'@'%' IDENTIFIED BY '" + password + "'";
+
+            String createUserSql =
+                    "CREATE USER IF NOT EXISTS '" + username + "'@'%' IDENTIFIED BY '" + password + "'";
+
             executeUpdate(connection, createUserSql);
-            executeUpdate(connection, "GRANT ALL PRIVILEGES ON `" + dbName + "`.* TO '" + username + "'@'%'");
+            executeUpdate(connection,
+                    "GRANT ALL PRIVILEGES ON `" + dbName + "`.* TO '" + username + "'@'%'");
             executeUpdate(connection, "FLUSH PRIVILEGES");
+
             connection.commit();
             log.info("Database va user muvaffaqiyatli yaratildi");
 
         } catch (SQLException e) {
             rollbackQuietly(connection);
             log.error("MySQL xatosi", e);
-            throw new DatabaseCreationException("Database yaratishda xatolik: " + e.getMessage(), e
-            );
+            throw new DatabaseCreationException("Database yaratishda xatolik: " + e.getMessage(), e);
         } finally {
             closeQuietly(connection);
         }
+
         CreatedDatabases saved = repository.save(
                 CreatedDatabases.builder()
                         .email(req.getEmail())
@@ -103,7 +102,4 @@ public class DatabaseService {
 
         return saved.getEmail();
     }
-
-
-
 }

@@ -27,4 +27,7 @@ public class DbUtils {
             } catch (SQLException ignored) {}
         }
     }
+    public String escapeIdentifier(String id) {
+        return "`" + id.replace("`", "``") + "`";
+    }
 }

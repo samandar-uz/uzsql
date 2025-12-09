@@ -7,5 +7,4 @@ public class CreateRequest {
     private String email;
     private String dbName;
     private String dbUser;
-    private String recaptchaToken;
 }
